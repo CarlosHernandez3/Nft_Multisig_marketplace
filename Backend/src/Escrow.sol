@@ -2,6 +2,7 @@
 pragma solidity ^0.8.17;
 
 import "../node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "../node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 error Escrow__NotBuyer();
 error Escrow__NotSeller();
@@ -18,6 +19,8 @@ contract Escrow {
         PENDING,
         CLOSED
     }
+
+    IERC20 token;
 
     address private immutable i_lender;
     address private immutable i_seller;
@@ -89,6 +92,12 @@ contract Escrow {
         _;
     }
 
+    // Getter funcitons
+
+    function viewState() public view returns (State) {
+        return (saleState);
+    }
+
     function ViewBuyer() public view returns (address) {
         return (i_buyer);
     }
@@ -133,9 +142,11 @@ contract Escrow {
         amountDeposited += msg.value;
     }
 
-    function depositDownPayment() external onlyBuyer {
+    function depositDownPayment() external payable onlyBuyer {
         require(saleState == State.OPEN, "Sale is not Open");
-        (bool success, bytes memory data) = address(this).call{
+        // approve transaction
+
+        (bool success, bytes memory data) = payable(address(this)).call{
             value: i_deposit
         }("");
         require(success, "Failed to send Down Payment!");
@@ -153,14 +164,23 @@ contract Escrow {
         appraised = true;
     }
 
-    function lenderDeposit() public {
+    function lenderDeposit() public payable {
         require(
             msg.sender == i_lender,
             "Deposit must be from the lender's address!"
         );
+        require(saleState == State.PENDING, "No sale is pending!");
+        require(
+            amountDeposited >= i_deposit,
+            "Down Payment has not been made!"
+        );
+
+        require(appraised, "Property has not been appraised!");
+
+        // approve transaction
 
         uint256 requiredAmount = i_assetPrice - i_deposit;
-        (bool sent, bytes memory data) = address(this).call{
+        (bool sent, bytes memory data) = payable(address(this)).call{
             value: requiredAmount
         }("");
         require(sent, "The Lender's deposit failed!");
@@ -177,14 +197,16 @@ contract Escrow {
     }
 
     function cancelSale() external onlyParticipants {
-        (bool success, bytes memory data) = i_buyer.call{value: i_deposit}("");
+        (bool success, bytes memory data) = payable(i_buyer).call{
+            value: i_deposit
+        }("");
         require(success, "Failed to withdraw buyer's Down Payment!");
         emit Withdrawal(i_buyer, i_deposit);
         amountDeposited -= i_deposit;
 
-        (bool sent, bytes memory info) = i_lender.call{value: amountDeposited}(
-            ""
-        );
+        (bool sent, bytes memory info) = payable(i_lender).call{
+            value: amountDeposited
+        }("");
         require(sent, "Failed to withdraw lender's Payment!");
         emit Withdrawal(i_lender, amountDeposited);
         amountDeposited = 0;
@@ -197,9 +219,9 @@ contract Escrow {
             revert Escrow__SaleNotApproved();
         }
 
-        (bool success, bytes memory data) = i_seller.call{value: i_assetPrice}(
-            ""
-        );
+        (bool success, bytes memory data) = payable(i_seller).call{
+            value: i_assetPrice
+        }("");
         require(success, "Withdraw Failed!");
         amountDeposited = 0;
         emit Withdrawal(i_seller, i_assetPrice);

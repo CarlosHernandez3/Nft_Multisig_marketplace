@@ -8,6 +8,7 @@ import "../node_modules/@openzeppelin/contracts/token/ERC721/extensions/ERC721UR
 contract RealEstate is ERC721URIStorage {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
+    mapping(uint256 => address) public s_owner;
 
     constructor() ERC721("Real Estate", "REAL") {}
 
@@ -23,6 +24,7 @@ contract RealEstate is ERC721URIStorage {
         uint256 newItemId = _tokenIds.current();
         _mint(msg.sender, newItemId);
         _setTokenURI(newItemId, tokenURI);
+        s_owner[newItemId] = msg.sender;
 
         return newItemId;
     }
@@ -31,5 +33,3 @@ contract RealEstate is ERC721URIStorage {
         return _tokenIds.current();
     }
 }
-
-// disable burn functionality inherited from erc721 openzeppelin
