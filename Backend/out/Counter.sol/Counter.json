@@ -1,0 +1,34 @@
+{
+  "abi": [],
+  "bytecode": {
+    "object": "0x",
+    "linkReferences": {}
+  },
+  "deployedBytecode": {
+    "object": "0x",
+    "linkReferences": {}
+  },
+  "ast": {
+    "absolutePath": "src/Counter.sol",
+    "id": 23708,
+    "exportedSymbols": {},
+    "nodeType": "SourceUnit",
+    "src": "31:815:13",
+    "nodes": [
+      {
+        "id": 23707,
+        "nodeType": "PragmaDirective",
+        "src": "31:24:13",
+        "nodes": [],
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".17"
+        ]
+      }
+    ],
+    "license": "MIT"
+  },
+  "id": 13
+}

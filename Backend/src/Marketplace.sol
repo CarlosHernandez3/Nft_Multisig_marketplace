@@ -39,12 +39,6 @@ contract NftMarketplace is ReentrancyGuard {
     );
 
     mapping(address => mapping(uint256 => Listing)) private s_listings;
-    address public i_escrowAddress;
-    Escrow escrow;
-
-    constructor(address _escrowAddress) {
-        escrow = Escrow(payable(_escrowAddress));
-    }
 
     modifier notListed(address nftAddress, uint256 tokenId) {
         Listing memory listing = s_listings[nftAddress][tokenId];
@@ -109,14 +103,12 @@ contract NftMarketplace is ReentrancyGuard {
 
     function buyItem(
         address nftAddress,
-        uint256 tokenId
+        uint256 tokenId,
+        address escrowAddress
     ) external isListed(nftAddress, tokenId) nonReentrant {
+        Escrow escrow = Escrow(payable(escrowAddress));
         Listing memory listedItem = s_listings[nftAddress][tokenId];
 
-        escrow.appraiseProperty();
-        escrow.depositDownPayment();
-        escrow.lenderDeposit();
-        escrow.fullyFunded();
         escrow.executeSale();
 
         delete (s_listings[nftAddress][tokenId]);

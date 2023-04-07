@@ -12,7 +12,6 @@ error Escrow__NotParticipant();
 contract Escrow {
     event Deposited(address indexed depositer, uint256 weiAmount);
     event Withdrawal(address indexed withdrawer, uint256 weiAmount);
-    event NftSent(address indexed seller, address indexed buyer);
 
     enum State {
         OPEN,
@@ -20,18 +19,13 @@ contract Escrow {
         CLOSED
     }
 
-    IERC20 token;
-
     address private immutable i_lender;
     address private immutable i_seller;
     address private immutable i_buyer;
     uint256 private immutable i_deposit;
     uint256 private immutable i_assetPrice;
-
     bytes32 private immutable i_tokenURI;
     uint256 private immutable i_tokenId;
-    address private immutable i_nftAddress;
-    ERC721 private immutable i_nft;
 
     address public appraiser;
     uint256 public amountDeposited;
@@ -46,8 +40,7 @@ contract Escrow {
         uint256 _deposit,
         bytes32 _tokenURI,
         uint256 _assetPrice,
-        uint256 _tokenId,
-        address nftAddress
+        uint256 _tokenId
     ) {
         i_lender = _lender;
         i_seller = payable(_seller);
@@ -56,8 +49,6 @@ contract Escrow {
         i_tokenURI = _tokenURI;
         i_assetPrice = _assetPrice;
         i_tokenId = _tokenId;
-        i_nftAddress = nftAddress;
-        i_nft = ERC721(nftAddress);
     }
 
     modifier onlyBuyer() {
@@ -132,10 +123,6 @@ contract Escrow {
 
     function viewTokenId() public view returns (uint256) {
         return (i_tokenId);
-    }
-
-    function viewNftAddress() public view returns (address) {
-        return (i_nftAddress);
     }
 
     receive() external payable {
@@ -213,20 +200,12 @@ contract Escrow {
         saleState = State.OPEN;
     }
 
-    function executeSale() external onlySeller saleApproved {
-        i_nft.approve(i_buyer, i_tokenId);
-        if (i_nft.getApproved(i_tokenId) != address(this)) {
-            revert Escrow__SaleNotApproved();
-        }
-
+    function executeSale() external onlyBuyer saleApproved {
         (bool success, bytes memory data) = payable(i_seller).call{
             value: i_assetPrice
         }("");
         require(success, "Withdraw Failed!");
         amountDeposited = 0;
         emit Withdrawal(i_seller, i_assetPrice);
-
-        i_nft.transferFrom(i_seller, i_buyer, i_tokenId);
-        emit NftSent(i_seller, i_buyer);
     }
 }

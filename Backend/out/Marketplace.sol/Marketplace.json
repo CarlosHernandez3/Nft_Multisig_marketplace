@@ -1,0 +1,241 @@
+{
+  "abi": [
+    {
+      "inputs": [],
+      "name": "number",
+      "outputs": [
+        {
+          "internalType": "uint8",
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    }
+  ],
+  "bytecode": {
+    "object": "0x6080604052348015600f57600080fd5b50607780601d6000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c80638381f58a14602d575b600080fd5b604080516005815290519081900360200190f3fea26469706673582212202d9b4e0798e081784ed395eda7a2e28e01435bf63fb5e9fd78b8e60efefbd7b064736f6c63430008130033",
+    "sourceMap": "58:102:11:-:0;;;;;;;;;;;;;;;;;;;",
+    "linkReferences": {}
+  },
+  "deployedBytecode": {
+    "object": "0x6080604052348015600f57600080fd5b506004361060285760003560e01c80638381f58a14602d575b600080fd5b604080516005815290519081900360200190f3fea26469706673582212202d9b4e0798e081784ed395eda7a2e28e01435bf63fb5e9fd78b8e60efefbd7b064736f6c63430008130033",
+    "sourceMap": "58:102:11:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;85:73;;;;149:1;156:36:12;;85:73:11;;;;;;144:2:12;85:73:11;;",
+    "linkReferences": {}
+  },
+  "methodIdentifiers": {
+    "number()": "8381f58a"
+  },
+  "rawMetadata": "{\"compiler\":{\"version\":\"0.8.19+commit.7dd6d404\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"number\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"pure\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"src/Marketplace.sol\":\"Marketplace\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[\":ds-test/=lib/forge-std/lib/ds-test/src/\",\":forge-std/=lib/forge-std/src/\"]},\"sources\":{\"src/Marketplace.sol\":{\"keccak256\":\"0x83cb0f2944d061c8289ce5465dd150021d76a22365a6d1f61ad26419e2ff48c6\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://358d425bff820867e7f5ef11a3cfaa74602383cdc1463ac63ffbbf7d2a8943fb\",\"dweb:/ipfs/QmUxaeXtY92uF48pNQdP59wCCKMx5L7Rt3wPvGvrowRkwJ\"]}},\"version\":1}",
+  "metadata": {
+    "compiler": {
+      "version": "0.8.19+commit.7dd6d404"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "inputs": [],
+          "stateMutability": "pure",
+          "type": "function",
+          "name": "number",
+          "outputs": [
+            {
+              "internalType": "uint8",
+              "name": "",
+              "type": "uint8"
+            }
+          ]
+        }
+      ],
+      "devdoc": {
+        "kind": "dev",
+        "methods": {},
+        "version": 1
+      },
+      "userdoc": {
+        "kind": "user",
+        "methods": {},
+        "version": 1
+      }
+    },
+    "settings": {
+      "remappings": [
+        ":ds-test/=lib/forge-std/lib/ds-test/src/",
+        ":forge-std/=lib/forge-std/src/"
+      ],
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "metadata": {
+        "bytecodeHash": "ipfs"
+      },
+      "compilationTarget": {
+        "src/Marketplace.sol": "Marketplace"
+      },
+      "libraries": {}
+    },
+    "sources": {
+      "src/Marketplace.sol": {
+        "keccak256": "0x83cb0f2944d061c8289ce5465dd150021d76a22365a6d1f61ad26419e2ff48c6",
+        "urls": [
+          "bzz-raw://358d425bff820867e7f5ef11a3cfaa74602383cdc1463ac63ffbbf7d2a8943fb",
+          "dweb:/ipfs/QmUxaeXtY92uF48pNQdP59wCCKMx5L7Rt3wPvGvrowRkwJ"
+        ],
+        "license": "MIT"
+      }
+    },
+    "version": 1
+  },
+  "ast": {
+    "absolutePath": "src/Marketplace.sol",
+    "id": 3076,
+    "exportedSymbols": {
+      "Marketplace": [
+        3075
+      ]
+    },
+    "nodeType": "SourceUnit",
+    "src": "32:129:11",
+    "nodes": [
+      {
+        "id": 3065,
+        "nodeType": "PragmaDirective",
+        "src": "32:24:11",
+        "nodes": [],
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".17"
+        ]
+      },
+      {
+        "id": 3075,
+        "nodeType": "ContractDefinition",
+        "src": "58:102:11",
+        "nodes": [
+          {
+            "id": 3074,
+            "nodeType": "FunctionDefinition",
+            "src": "85:73:11",
+            "nodes": [],
+            "body": {
+              "id": 3073,
+              "nodeType": "Block",
+              "src": "131:27:11",
+              "nodes": [],
+              "statements": [
+                {
+                  "expression": {
+                    "components": [
+                      {
+                        "hexValue": "35",
+                        "id": 3070,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "number",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "149:1:11",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_rational_5_by_1",
+                          "typeString": "int_const 5"
+                        },
+                        "value": "5"
+                      }
+                    ],
+                    "id": 3071,
+                    "isConstant": false,
+                    "isInlineArray": false,
+                    "isLValue": false,
+                    "isPure": true,
+                    "lValueRequested": false,
+                    "nodeType": "TupleExpression",
+                    "src": "148:3:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_rational_5_by_1",
+                      "typeString": "int_const 5"
+                    }
+                  },
+                  "functionReturnParameters": 3069,
+                  "id": 3072,
+                  "nodeType": "Return",
+                  "src": "141:10:11"
+                }
+              ]
+            },
+            "functionSelector": "8381f58a",
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "number",
+            "nameLocation": "94:6:11",
+            "parameters": {
+              "id": 3066,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "100:2:11"
+            },
+            "returnParameters": {
+              "id": 3069,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3068,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3074,
+                  "src": "124:5:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  },
+                  "typeName": {
+                    "id": 3067,
+                    "name": "uint8",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "124:5:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "123:7:11"
+            },
+            "scope": 3075,
+            "stateMutability": "pure",
+            "virtual": false,
+            "visibility": "public"
+          }
+        ],
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "Marketplace",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "linearizedBaseContracts": [
+          3075
+        ],
+        "name": "Marketplace",
+        "nameLocation": "67:11:11",
+        "scope": 3076,
+        "usedErrors": []
+      }
+    ],
+    "license": "MIT"
+  },
+  "id": 11
+}
